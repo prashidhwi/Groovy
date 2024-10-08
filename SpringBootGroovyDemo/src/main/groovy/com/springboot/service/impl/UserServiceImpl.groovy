@@ -15,12 +15,30 @@ class UserServiceImpl implements UserService {
 	
 	@Override
 	int insertUser(UserBean userbean) {
+		if(userbean.userId) {
+			userbean.userId = new Random().nextInt();
+		}
 		userDao.save(userbean);
 		return userbean.userId;
 	}
 
 	@Override
-	public List userList() {
+	List userList() {
 		return userDao.findAll();
+	}
+
+	@Override
+	UserBean getUser(user) {
+		Optional<UserBean> userBean = Optional.of(new UserBean());
+		if(user.isInteger()) {
+			userBean =  userDao.findById(user)
+		} else {
+			userBean = userDao.findUserBeanByUsernameOrFullNameOrEmail(user, user, user)
+		}
+		if(!userBean.isPresent()) {
+			null
+		} else {
+			userBean.get()
+		}
 	}
 }

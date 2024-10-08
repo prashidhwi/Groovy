@@ -6,5 +6,7 @@ interface UserService {
 	
 	int insertUser(UserBean userbean)
 	
-	List userList();
+	List userList()
+	
+	UserBean getUser(def user)
 }
